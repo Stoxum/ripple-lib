@@ -3,18 +3,18 @@
 const _ = require('lodash');
 const assert = require('assert-diff');
 const setupAPI = require('./setup-api');
-const RippleAPI = require('ripple-api').RippleAPI;
-const validate = RippleAPI._PRIVATE.validate;
+const StoxumAPI = require('stoxum-api').StoxumAPI;
+const validate = StoxumAPI._PRIVATE.validate;
 const fixtures = require('./fixtures');
 const requests = fixtures.requests;
 const responses = fixtures.responses;
 const addresses = require('./fixtures/addresses');
 const hashes = require('./fixtures/hashes');
 const address = addresses.ACCOUNT;
-const utils = RippleAPI._PRIVATE.ledgerUtils;
-const ledgerClosed = require('./fixtures/rippled/ledger-close-newer');
-const schemaValidator = RippleAPI._PRIVATE.schemaValidator;
-const binary = require('ripple-binary-codec');
+const utils = StoxumAPI._PRIVATE.ledgerUtils;
+const ledgerClosed = require('./fixtures/stoxumd/ledger-close-newer');
+const schemaValidator = StoxumAPI._PRIVATE.schemaValidator;
+const binary = require('stoxum-binary-codec');
 assert.options.strict = true;
 
 // how long before each test case times out
@@ -40,15 +40,15 @@ function checkResult(expected, schemaName, response) {
 }
 
 
-describe('RippleAPI', function () {
+describe('StoxumAPI', function () {
   this.timeout(TIMEOUT);
   const instructions = { maxLedgerVersionOffset: 100 };
   beforeEach(setupAPI.setup);
   afterEach(setupAPI.teardown);
 
   it('error inspect', function () {
-    const error = new this.api.errors.RippleError('mess', { data: 1 });
-    assert.strictEqual(error.inspect(), '[RippleError(mess, { data: 1 })]');
+    const error = new this.api.errors.StoxumError('mess', { data: 1 });
+    assert.strictEqual(error.inspect(), '[StoxumError(mess, { data: 1 })]');
   });
 
   describe('preparePayment', function () {
@@ -562,9 +562,9 @@ describe('RippleAPI', function () {
 
   it('submit - failure', function () {
     return this.api.submit('BAD').then(() => {
-      assert(false, 'Should throw RippledError');
+      assert(false, 'Should throw StoxumdError');
     }).catch(error => {
-      assert(error instanceof this.api.errors.RippledError);
+      assert(error instanceof this.api.errors.StoxumdError);
       assert.strictEqual(error.data.resultCode, 'temBAD_FEE');
     });
   });
@@ -615,7 +615,7 @@ describe('RippleAPI', function () {
     }, /txJSON is not the same for all signedTransactions/);
   });
 
-  describe('RippleAPI', function () {
+  describe('StoxumAPI', function () {
 
     it('getBalances', function () {
       return this.api.getBalances(address).then(
@@ -1092,14 +1092,14 @@ describe('RippleAPI', function () {
     });
   });
 
-  // this is the case where core.RippleError just falls
+  // this is the case where core.StoxumError just falls
   // through the api to the user
   it('getTransactions - error', function () {
     const options = { types: ['payment', 'order'], initiated: true, limit: 13 };
     return this.api.getTransactions(address, options).then(() => {
-      assert(false, 'Should throw RippleError');
+      assert(false, 'Should throw StoxumError');
     }).catch(error => {
-      assert(error instanceof this.api.errors.RippleError);
+      assert(error instanceof this.api.errors.StoxumError);
     });
   });
 
@@ -1333,7 +1333,7 @@ describe('RippleAPI', function () {
     return this.api.getPaymentChannel(channelId).then(() => {
       assert(false, 'Should throw entryNotFound');
     }).catch(error => {
-      assert(error instanceof this.api.errors.RippledError);
+      assert(error instanceof this.api.errors.StoxumdError);
       assert(_.includes(error.message, 'entryNotFound'));
     });
   });
@@ -1364,7 +1364,7 @@ describe('RippleAPI', function () {
     return this.api.getServerInfo().then(() => {
       assert(false, 'Should throw NetworkError');
     }).catch(error => {
-      assert(error instanceof this.api.errors.RippledError);
+      assert(error instanceof this.api.errors.StoxumdError);
       assert(_.includes(error.message, 'slowDown'));
     });
   });
@@ -1422,7 +1422,7 @@ describe('RippleAPI', function () {
   // @TODO
   // need decide what to do with currencies/XRP:
   // if add 'XRP' in currencies, then there will be exception in
-  // xrpToDrops function (called from toRippledAmount)
+  // xrpToDrops function (called from toStoxumdAmount)
   it('getPaths USD 2 USD', function () {
     return this.api.getPaths(requests.getPaths.UsdToUsd).then(
       _.partial(checkResult, responses.getPaths.UsdToUsd, 'getPaths'));
@@ -1493,7 +1493,7 @@ describe('RippleAPI', function () {
     const pathfind = _.assign({}, requests.getPaths.normal,
       { source: { address: addresses.NOTFOUND } });
     return this.api.getPaths(pathfind).catch(error => {
-      assert(error instanceof this.api.errors.RippleError);
+      assert(error instanceof this.api.errors.StoxumError);
     });
   });
 
@@ -1619,10 +1619,10 @@ describe('RippleAPI', function () {
       });
   });
 
-  it('RippleError with data', function () {
-    const error = new this.api.errors.RippleError('_message_', '_data_');
+  it('StoxumError with data', function () {
+    const error = new this.api.errors.StoxumError('_message_', '_data_');
     assert.strictEqual(error.toString(),
-      '[RippleError(_message_, \'_data_\')]');
+      '[StoxumError(_message_, \'_data_\')]');
   });
 
   it('NotFoundError default message', function () {
@@ -1631,10 +1631,10 @@ describe('RippleAPI', function () {
       '[NotFoundError(Not found)]');
   });
 
-  it('common utils - toRippledAmount', function () {
+  it('common utils - toStoxumdAmount', function () {
     const amount = { issuer: 'is', currency: 'c', value: 'v' };
 
-    assert.deepEqual(utils.common.toRippledAmount(amount), {
+    assert.deepEqual(utils.common.toStoxumdAmount(amount), {
       issuer: 'is', currency: 'c', value: 'v'
     });
   });
@@ -1761,9 +1761,9 @@ describe('RippleAPI', function () {
   });
 });
 
-describe('RippleAPI - offline', function () {
+describe('StoxumAPI - offline', function () {
   it('prepareSettings and sign', function () {
-    const api = new RippleAPI();
+    const api = new StoxumAPI();
     const secret = 'shsWGZcmZz6YsWWmcnpfr6fLTdtFV';
     const settings = requests.prepareSettings.domain;
     const instructions = {
@@ -1779,7 +1779,7 @@ describe('RippleAPI - offline', function () {
   });
 
   it('getServerInfo - offline', function () {
-    const api = new RippleAPI();
+    const api = new StoxumAPI();
     return api.getServerInfo().then(() => {
       assert(false, 'Should throw error');
     }).catch(error => {
@@ -1788,7 +1788,7 @@ describe('RippleAPI - offline', function () {
   });
 
   it('computeLedgerHash', function () {
-    const api = new RippleAPI();
+    const api = new StoxumAPI();
     const header = requests.computeLedgerHash.header;
     const ledgerHash = api.computeLedgerHash(header);
     assert.strictEqual(ledgerHash,
@@ -1796,7 +1796,7 @@ describe('RippleAPI - offline', function () {
   });
 
   it('computeLedgerHash - with transactions', function () {
-    const api = new RippleAPI();
+    const api = new StoxumAPI();
     const header = _.omit(requests.computeLedgerHash.header,
       'transactionHash');
     header.rawTransactions = JSON.stringify(
@@ -1807,7 +1807,7 @@ describe('RippleAPI - offline', function () {
   });
 
   it('computeLedgerHash - incorrent transaction_hash', function () {
-    const api = new RippleAPI();
+    const api = new StoxumAPI();
     const header = _.assign({}, requests.computeLedgerHash.header,
       {
         transactionHash:
@@ -1819,21 +1819,21 @@ describe('RippleAPI - offline', function () {
   });
 
   /* eslint-disable no-unused-vars */
-  it('RippleAPI - implicit server port', function () {
-    const api = new RippleAPI({ server: 'wss://s1.ripple.com' });
+  it('StoxumAPI - implicit server port', function () {
+    const api = new StoxumAPI({ server: 'wss://s1.stoxum.com:51231' });
   });
   /* eslint-enable no-unused-vars */
-  it('RippleAPI invalid options', function () {
-    assert.throws(() => new RippleAPI({ invalid: true }));
+  it('StoxumAPI invalid options', function () {
+    assert.throws(() => new StoxumAPI({ invalid: true }));
   });
 
-  it('RippleAPI valid options', function () {
-    const api = new RippleAPI({ server: 'wss://s:1' });
+  it('StoxumAPI valid options', function () {
+    const api = new StoxumAPI({ server: 'wss://s:1' });
     assert.deepEqual(api.connection._url, 'wss://s:1');
   });
 
-  it('RippleAPI invalid server uri', function () {
-    assert.throws(() => new RippleAPI({ server: 'wss//s:1' }));
+  it('StoxumAPI invalid server uri', function () {
+    assert.throws(() => new StoxumAPI({ server: 'wss//s:1' }));
   });
 
 });

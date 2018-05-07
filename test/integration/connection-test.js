@@ -30,7 +30,7 @@ function makeRequest(connection, request) {
 }
 
 function main() {
-  const connection = new Connection('wss://s1.ripple.com');
+  const connection = new Connection('wss://s1.stoxum.com:51231');
   connection.connect().then(() => {
     console.log('Connected');
     Promise.all([

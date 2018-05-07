@@ -6,7 +6,7 @@ export type Amount = {
 }
 
 
-export type RippledAmount = string | Amount
+export type StoxumdAmount = string | Amount
 
 /**
  * Specification of which currency the account taking the offer would pay/

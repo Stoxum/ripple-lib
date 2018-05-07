@@ -4,9 +4,9 @@ const _ = require('lodash');
 const assert = require('assert-diff');
 const setupAPI = require('./setup-api');
 const responses = require('./fixtures').responses;
-const ledgerClosed = require('./fixtures/rippled/ledger-close');
-const RippleAPI = require('ripple-api').RippleAPI;
-const schemaValidator = RippleAPI._PRIVATE.schemaValidator;
+const ledgerClosed = require('./fixtures/stoxumd/ledger-close');
+const StoxumAPI = require('stoxum-api').StoxumAPI;
+const schemaValidator = StoxumAPI._PRIVATE.schemaValidator;
 
 const TIMEOUT = process.browser ? 25000 : 10000;
 
@@ -22,7 +22,7 @@ function checkResult(expected, schemaName, response) {
   return response;
 }
 
-describe('RippleAPIBroadcast', function() {
+describe('StoxumAPIBroadcast', function() {
   this.timeout(TIMEOUT);
   beforeEach(setupAPI.setupBroadcast);
   afterEach(setupAPI.teardown);

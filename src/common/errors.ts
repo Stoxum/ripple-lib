@@ -2,7 +2,7 @@
 import {inspect} from 'util'
 import * as browserHacks from './browser-hacks'
 
-class RippleError extends Error {
+class StoxumError extends Error {
 
   name: string
   message: string
@@ -36,39 +36,39 @@ class RippleError extends Error {
   }
 }
 
-class RippledError extends RippleError {}
+class StoxumdError extends StoxumError {}
 
-class UnexpectedError extends RippleError {}
+class UnexpectedError extends StoxumError {}
 
-class LedgerVersionError extends RippleError {}
+class LedgerVersionError extends StoxumError {}
 
-class ConnectionError extends RippleError {}
+class ConnectionError extends StoxumError {}
 
 class NotConnectedError extends ConnectionError {}
 
 class DisconnectedError extends ConnectionError {}
 
-class RippledNotInitializedError extends ConnectionError {}
+class StoxumdNotInitializedError extends ConnectionError {}
 
 class TimeoutError extends ConnectionError {}
 
 class ResponseFormatError extends ConnectionError {}
 
-class ValidationError extends RippleError {}
+class ValidationError extends StoxumError {}
 
-class NotFoundError extends RippleError {
+class NotFoundError extends StoxumError {
   constructor(message = 'Not found') {
     super(message)
   }
 }
 
-class MissingLedgerHistoryError extends RippleError {
+class MissingLedgerHistoryError extends StoxumError {
   constructor(message?: string) {
     super(message || 'Server is missing ledger history in the specified range')
   }
 }
 
-class PendingLedgerVersionError extends RippleError {
+class PendingLedgerVersionError extends StoxumError {
   constructor(message?: string) {
     super(message || 'maxLedgerVersion is greater than server\'s most recent ' +
       ' validated ledger')
@@ -76,13 +76,13 @@ class PendingLedgerVersionError extends RippleError {
 }
 
 export {
-  RippleError,
+  StoxumError,
   UnexpectedError,
   ConnectionError,
-  RippledError,
+  StoxumdError,
   NotConnectedError,
   DisconnectedError,
-  RippledNotInitializedError,
+  StoxumdNotInitializedError,
   TimeoutError,
   ResponseFormatError,
   ValidationError,

@@ -1,7 +1,7 @@
 import * as _ from 'lodash'
 import * as utils from './utils'
 const validate = utils.common.validate
-const toRippledAmount = utils.common.toRippledAmount
+const toStoxumdAmount = utils.common.toStoxumdAmount
 const paymentFlags = utils.common.txFlags.Payment
 const ValidationError = utils.common.errors.ValidationError
 import {Instructions, Prepare} from './types'
@@ -21,12 +21,12 @@ export interface Payment {
   // liquidity or funds in the source_account account
   allowPartialPayment?: boolean,
   // A boolean that can be set to true if paths are specified and the sender
-  // would like the Ripple Network to disregard any direct paths from
+  // would like the Stoxum Network to disregard any direct paths from
   // the source_account to the destination_account. This may be used to take
   // advantage of an arbitrage opportunity or by gateways wishing to issue
   // balances from a hot wallet to a user who has mistakenly set a trustline
   // directly to the hot wallet
-  noDirectRipple?: boolean,
+  noDirectStoxum?: boolean,
   limitQuality?: boolean
 }
 
@@ -56,10 +56,10 @@ function isIOUWithoutCounterparty(amount: Amount): boolean {
 
 function applyAnyCounterpartyEncoding(payment: Payment): void {
   // Convert blank counterparty to sender or receiver's address
-  //   (Ripple convention for 'any counterparty')
-  // https://ripple.com/build/transactions/
+  //   (Stoxum convention for 'any counterparty')
+  // https://stoxum.com/build/transactions/
   //    #special-issuer-values-for-sendmax-and-amount
-  // https://ripple.com/build/ripple-rest/#counterparties-in-payments
+  // https://stoxum.com/build/stoxum-rest/#counterparties-in-payments
   _.forEach([payment.source, payment.destination], adjustment => {
     _.forEach(['amount', 'minAmount', 'maxAmount'], key => {
       if (isIOUWithoutCounterparty(adjustment[key])) {
@@ -99,7 +99,7 @@ function createPaymentTransaction(address: string, paymentArgument: Payment
   const sourceAmount = isMaxAdjustment(payment.source)
     ? payment.source.maxAmount : payment.source.amount
 
-  // when using destination.minAmount, rippled still requires that we set
+  // when using destination.minAmount, stoxumd still requires that we set
   // a destination amount in addition to DeliverMin. the destination amount
   // is interpreted as the maximum amount to send. we want to be sure to
   // send the whole source amount, so we set the destination amount to the
@@ -113,7 +113,7 @@ function createPaymentTransaction(address: string, paymentArgument: Payment
     TransactionType: 'Payment',
     Account: payment.source.address,
     Destination: payment.destination.address,
-    Amount: toRippledAmount(amount),
+    Amount: toStoxumdAmount(amount),
     Flags: 0
   }
 
@@ -129,8 +129,8 @@ function createPaymentTransaction(address: string, paymentArgument: Payment
   if (payment.memos !== undefined) {
     txJSON.Memos = _.map(payment.memos, utils.convertMemo)
   }
-  if (payment.noDirectRipple === true) {
-    txJSON.Flags |= paymentFlags.NoRippleDirect
+  if (payment.noDirectStoxum === true) {
+    txJSON.Flags |= paymentFlags.NoStoxumDirect
   }
   if (payment.limitQuality === true) {
     txJSON.Flags |= paymentFlags.LimitQuality
@@ -138,16 +138,16 @@ function createPaymentTransaction(address: string, paymentArgument: Payment
   if (!isXRPToXRPPayment(payment)) {
     // Don't set SendMax for XRP->XRP payment
     // temREDUNDANT_SEND_MAX removed in:
-    // https://github.com/ripple/rippled/commit/
+    // https://github.com/Stoxum/stoxumd/commit/
     //  c522ffa6db2648f1d8a987843e7feabf1a0b7de8/
     if (payment.allowPartialPayment || isMinAdjustment(payment.destination)) {
       txJSON.Flags |= paymentFlags.PartialPayment
     }
 
-    txJSON.SendMax = toRippledAmount(sourceAmount)
+    txJSON.SendMax = toStoxumdAmount(sourceAmount)
 
     if (isMinAdjustment(payment.destination)) {
-      txJSON.DeliverMin = toRippledAmount(destinationAmount)
+      txJSON.DeliverMin = toStoxumdAmount(destinationAmount)
     }
 
     if (payment.paths !== undefined) {

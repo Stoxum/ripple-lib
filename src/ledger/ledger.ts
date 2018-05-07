@@ -1,6 +1,6 @@
 import {validate} from '../common'
 import {FormattedLedger, parseLedger} from './parse/ledger'
-import {RippleAPI} from '../api'
+import {StoxumAPI} from '../api'
 
 export type GetLedgerOptions = {
   ledgerVersion?: number,
@@ -10,7 +10,7 @@ export type GetLedgerOptions = {
 }
 
 async function getLedger(
-  this: RippleAPI, options: GetLedgerOptions = {}
+  this: StoxumAPI, options: GetLedgerOptions = {}
 ): Promise<FormattedLedger> {
   // 1. Validate
   validate.getLedger({options})

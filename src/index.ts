@@ -1,5 +1,5 @@
 
 
-export {RippleAPI} from './api'
+export {StoxumAPI} from './api'
 // Broadcast api is experimental
-export {RippleAPIBroadcast} from './broadcast'
+export {StoxumAPIBroadcast} from './broadcast'

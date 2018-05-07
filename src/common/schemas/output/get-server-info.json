@@ -5,20 +5,20 @@
   "properties": {
     "buildVersion": {
       "type": "string",
-      "description": "The version number of the running rippled version."
+      "description": "The version number of the running stoxumd version."
     },
     "completeLedgers": {
       "type": "string",
       "pattern": "[0-9,-]+",
-      "description": "Range expression indicating the sequence numbers of the ledger versions the local rippled has in its database. It is possible to be a disjoint sequence, e.g. “2500-5000,32570-7695432”."
+      "description": "Range expression indicating the sequence numbers of the ledger versions the local stoxumd has in its database. It is possible to be a disjoint sequence, e.g. “2500-5000,32570-7695432”."
     },
     "hostID": {
       "type": "string",
-      "description": "On an admin request, returns the hostname of the server running the rippled instance; otherwise, returns a unique four letter word."
+      "description": "On an admin request, returns the hostname of the server running the stoxumd instance; otherwise, returns a unique four letter word."
     },
     "ioLatencyMs": {
       "type": "number",
-      "description": "Amount of time spent waiting for I/O operations to be performed, in milliseconds. If this number is not very, very low, then the rippled server is probably having serious load issues."
+      "description": "Amount of time spent waiting for I/O operations to be performed, in milliseconds. If this number is not very, very low, then the stoxumd server is probably having serious load issues."
     },
     "load": {
       "type": "object",
@@ -31,7 +31,7 @@
         },
         "threads": {
           "type": "number",
-          "description": "*(Admin only)* The number of threads in the server’s main job pool, performing various Ripple Network operations."
+          "description": "*(Admin only)* The number of threads in the server’s main job pool, performing various Stoxum Network operations."
         }
       },
       "required": ["jobTypes", "threads"]
@@ -58,7 +58,7 @@
     "peers": {
       "type": "integer",
       "minimum": 0,
-      "description": "How many other rippled servers the node is currently connected to."
+      "description": "How many other stoxumd servers the node is currently connected to."
     },
     "pubkeyNode": {
       "type": "string",
@@ -70,7 +70,7 @@
     },
     "serverState": {
       "type": "string",
-      "description": "A string indicating to what extent the server is participating in the network. See [Possible Server States](https://ripple.com/build/rippled-apis/#possible-server-states) for more details.",
+      "description": "A string indicating to what extent the server is participating in the network. See [Possible Server States](https://stoxum.com/build/stoxumd-apis/#possible-server-states) for more details.",
       "enum": ["disconnected", "connected", "syncing", "tracking", "full", "validating", "proposing"]
     },
     "validatedLedger": {

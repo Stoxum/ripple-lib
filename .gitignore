@@ -19,7 +19,7 @@
 *.o
 build/
 tags
-bin/rippled
+bin/stoxumd
 Debug/*.*
 Release/*.*
 
@@ -35,7 +35,7 @@ db/*.db
 db/*.db-*
 
 # Ignore customized configs
-rippled.cfg
+stoxumd.cfg
 validators.txt
 test/config.js
 

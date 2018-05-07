@@ -14,13 +14,13 @@ export type FormattedAccountOrder = {
   }
 }
 
-// TODO: remove this function once rippled provides quality directly
+// TODO: remove this function once stoxumd provides quality directly
 function computeQuality(takerGets, takerPays) {
   const quotient = new BigNumber(takerPays.value).dividedBy(takerGets.value)
   return quotient.toDigits(16, BigNumber.ROUND_HALF_UP).toString()
 }
 
-// rippled 'account_offers' returns a different format for orders than 'tx'
+// stoxumd 'account_offers' returns a different format for orders than 'tx'
 // the flags are also different
 export function parseAccountOrder(
   address: string, order: any
@@ -38,7 +38,7 @@ export function parseAccountOrder(
     quantity: quantity,
     totalPrice: totalPrice,
     passive: ((order.flags & orderFlags.Passive) !== 0) || undefined,
-    // rippled currently does not provide "expiration" in account_offers
+    // stoxumd currently does not provide "expiration" in account_offers
     expirationTime: parseTimestamp(order.expiration)
   })
 

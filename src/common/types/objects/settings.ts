@@ -19,7 +19,7 @@ export type FormattedSettings = {
   enableTransactionIDTracking?: boolean,
   noFreeze?: boolean,
   globalFreeze?: boolean,
-  defaultRipple?: boolean,
+  defaultStoxum?: boolean,
   emailHash?: string|null,
   messageKey?: string,
   domain?: string,

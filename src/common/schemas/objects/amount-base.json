@@ -13,7 +13,7 @@
       "$ref": "currency"
     },
     "counterparty": {
-      "description": "The Ripple address of the account that owes or is owed the funds (omitted if `currency` is \"XRP\")",
+      "description": "The Stoxum address of the account that owes or is owed the funds (omitted if `currency` is \"XRP\")",
       "$ref": "address"
     }
   },

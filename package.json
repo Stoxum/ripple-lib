@@ -1,8 +1,8 @@
 {
-  "name": "ripple-lib",
+  "name": "stoxum-lib",
   "version": "0.21.0",
   "license": "ISC",
-  "description": "A JavaScript API for interacting with Ripple in Node.js and the browser",
+  "description": "A JavaScript API for interacting with Stoxum in Node.js and the browser",
   "files": [
     "dist/npm/*",
     "build/*"
@@ -22,11 +22,11 @@
     "https-proxy-agent": "2.2.1",
     "jsonschema": "1.2.2",
     "lodash": "^4.17.4",
-    "ripple-address-codec": "^2.0.1",
-    "ripple-binary-codec": "^0.1.13",
-    "ripple-hashes": "^0.3.1",
-    "ripple-keypairs": "^0.10.1",
-    "ripple-lib-transactionparser": "^0.6.2",
+    "stoxum-address-codec": "^2.0.1",
+    "stoxum-binary-codec": "^0.1.13",
+    "stoxum-hashes": "^0.3.1",
+    "stoxum-keypairs": "^0.10.1",
+    "stoxum-lib-transactionparser": "^0.6.2",
     "ws": "^3.3.1"
   },
   "devDependencies": {
@@ -60,7 +60,7 @@
   },
   "scripts": {
     "build": "gulp",
-    "doctoc": "doctoc docs/index.md --title '# RippleAPI Reference' --github --maxlevel 2",
+    "doctoc": "doctoc docs/index.md --title '# StoxumAPI Reference' --github --maxlevel 2",
     "docgen": "node --harmony scripts/build_docs.js",
     "clean": "rm -rf dist/npm",
     "compile": "mkdir -p dist/npm/common && cp -r src/common/schemas dist/npm/common/ && tsc",
@@ -75,7 +75,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/ripple/ripple-lib.git"
+    "url": "git://github.com/Stoxum/stoxum-lib.git"
   },
   "readmeFilename": "README.md",
   "engines": {

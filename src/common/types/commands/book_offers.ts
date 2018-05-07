@@ -1,6 +1,6 @@
 import {
   TakerRequestAmount,
-  RippledAmount,
+  StoxumdAmount,
   OfferCreateTransaction
 } from '../objects'
 
@@ -25,6 +25,6 @@ export interface BookOffersResponse {
 export interface BookOffer extends OfferCreateTransaction {
   quality?: string
   owner_funds?: string,
-  taker_gets_funded?: RippledAmount,
-  taker_pays_funded?: RippledAmount
+  taker_gets_funded?: StoxumdAmount,
+  taker_pays_funded?: StoxumdAmount
 }

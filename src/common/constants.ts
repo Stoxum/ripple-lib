@@ -10,7 +10,7 @@ const accountRootFlags = {
   DisableMaster: 0x00100000, // force regular key
   NoFreeze: 0x00200000, // permanently disallowed freezing trustlines
   GlobalFreeze: 0x00400000, // trustlines globally frozen
-  DefaultRipple: 0x00800000
+  DefaultStoxum: 0x00800000
 }
 
 const AccountFlags = {
@@ -22,7 +22,7 @@ const AccountFlags = {
   disableMasterKey: accountRootFlags.DisableMaster,
   noFreeze: accountRootFlags.NoFreeze,
   globalFreeze: accountRootFlags.GlobalFreeze,
-  defaultRipple: accountRootFlags.DefaultRipple
+  defaultStoxum: accountRootFlags.DefaultStoxum
 }
 
 const AccountFlagIndices = {
@@ -34,7 +34,7 @@ const AccountFlagIndices = {
   enableTransactionIDTracking: txFlagIndices.AccountSet.asfAccountTxnID,
   noFreeze: txFlagIndices.AccountSet.asfNoFreeze,
   globalFreeze: txFlagIndices.AccountSet.asfGlobalFreeze,
-  defaultRipple: txFlagIndices.AccountSet.asfDefaultRipple
+  defaultStoxum: txFlagIndices.AccountSet.asfDefaultStoxum
 }
 
 const AccountFields = {

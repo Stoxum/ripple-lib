@@ -1,5 +1,5 @@
 
-import {Amount, RippledAmount, Adjustment, MaxAdjustment,
+import {Amount, StoxumdAmount, Adjustment, MaxAdjustment,
   MinAdjustment} from '../common/types/objects'
 
 // Amount where counterparty and value are optional
@@ -33,13 +33,13 @@ export type PathFind = {
 export type PathFindRequest = {
   command: string,
   source_account: string,
-  destination_amount: RippledAmount,
+  destination_amount: StoxumdAmount,
   destination_account: string,
   source_currencies?: {currency: string, issuer?: string}[],
-  send_max?: RippledAmount
+  send_max?: StoxumdAmount
 }
 
-export type RippledPathsResponse = {
+export type StoxumdPathsResponse = {
   alternatives: Array<{
     paths_computed: Array<Array<{
       type: number,
@@ -48,11 +48,11 @@ export type RippledPathsResponse = {
       issuer?: string,
       currency?: string
     }>>,
-    source_amount: RippledAmount
+    source_amount: StoxumdAmount
   }>,
   type: string,
   destination_account: string,
-  destination_amount: RippledAmount,
+  destination_amount: StoxumdAmount,
   destination_currencies?: Array<string>,
   source_account: string,
   source_currencies?: Array<{currency: string}>,

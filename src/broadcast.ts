@@ -1,16 +1,16 @@
 
 import * as _ from 'lodash'
-import {RippleAPI} from './api'
+import {StoxumAPI} from './api'
 
-class RippleAPIBroadcast extends RippleAPI {
+class StoxumAPIBroadcast extends StoxumAPI {
 
   ledgerVersion: number | undefined = undefined
-  private _apis: RippleAPI[]
+  private _apis: StoxumAPI[]
 
   constructor(servers, options) {
     super(options)
 
-    const apis: RippleAPI[] = servers.map(server => new RippleAPI(
+    const apis: StoxumAPI[] = servers.map(server => new StoxumAPI(
       _.assign({}, options, {server})
     ))
 
@@ -58,9 +58,9 @@ class RippleAPIBroadcast extends RippleAPI {
 
   getMethodNames() {
     const methodNames: string[] = []
-    const rippleAPI = this._apis[0]
-    for (const name of Object.getOwnPropertyNames(rippleAPI)) {
-      if (typeof rippleAPI[name] === 'function') {
+    const stoxumAPI = this._apis[0]
+    for (const name of Object.getOwnPropertyNames(stoxumAPI)) {
+      if (typeof stoxumAPI[name] === 'function') {
         methodNames.push(name)
       }
     }
@@ -69,5 +69,5 @@ class RippleAPIBroadcast extends RippleAPI {
 }
 
 export {
-  RippleAPIBroadcast
+  StoxumAPIBroadcast
 }

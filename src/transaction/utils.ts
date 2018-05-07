@@ -3,7 +3,7 @@ import * as common from '../common'
 import {Memo} from '../common/types/objects'
 const txFlags = common.txFlags
 import {Instructions, Prepare} from './types'
-import {RippleAPI} from '../api'
+import {StoxumAPI} from '../api'
 
 export type ApiMemo = {
   MemoData?: string,
@@ -36,7 +36,7 @@ function scaleValue(value, multiplier, extra = 0) {
   return (new BigNumber(value)).times(multiplier).plus(extra).toString()
 }
 
-function prepareTransaction(txJSON: any, api: RippleAPI,
+function prepareTransaction(txJSON: any, api: StoxumAPI,
   instructions: Instructions
 ): Promise<Prepare> {
   common.validate.instructions(instructions)

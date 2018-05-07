@@ -3,13 +3,13 @@ const _ = require('lodash');
 const assert = require('assert');
 const WebSocketServer = require('ws').Server;
 const EventEmitter2 = require('eventemitter2').EventEmitter2;
-const fixtures = require('./fixtures/rippled');
+const fixtures = require('./fixtures/stoxumd');
 const addresses = require('./fixtures/addresses');
 const hashes = require('./fixtures/hashes');
-const transactionsResponse = require('./fixtures/rippled/account-tx');
-const accountLinesResponse = require('./fixtures/rippled/account-lines');
-const accountObjectsResponse = require('./fixtures/rippled/account-objects');
-const fullLedger = require('./fixtures/rippled/ledger-full-38129.json');
+const transactionsResponse = require('./fixtures/stoxumd/account-tx');
+const accountLinesResponse = require('./fixtures/stoxumd/account-lines');
+const accountObjectsResponse = require('./fixtures/stoxumd/account-objects');
+const fullLedger = require('./fixtures/stoxumd/ledger-full-38129.json');
 const { getFreePort } = require('./utils/net-utils');
 
 function isUSD(json) {
@@ -48,7 +48,7 @@ function createLedgerResponse(request, response) {
   return JSON.stringify(newResponse);
 }
 
-module.exports = function createMockRippled(port) {
+module.exports = function createMockStoxumd(port) {
   const mock = new WebSocketServer({ port: port });
   _.assign(mock, EventEmitter2.prototype);
 
@@ -121,7 +121,7 @@ module.exports = function createMockRippled(port) {
       setTimeout(conn.terminate.bind(conn), request.data.disconnectIn);
     } else if (request.data.openOnOtherPort) {
       getFreePort().then(newPort => {
-        createMockRippled(newPort);
+        createMockStoxumd(newPort);
         conn.send(createResponse(request, {
           status: 'success', type: 'response',
           result: { port: newPort }
@@ -133,7 +133,7 @@ module.exports = function createMockRippled(port) {
         conn.terminate();
         close.call(mock, () => {
           setTimeout(() => {
-            createMockRippled(port);
+            createMockStoxumd(port);
           }, request.data.closeServerAndReopen);
         });
       }, 10);

@@ -1,10 +1,10 @@
 import * as _ from 'lodash'
-import binary = require('ripple-binary-codec')
+import binary = require('stoxum-binary-codec')
 import * as utils from './utils'
 import BigNumber from 'bignumber.js'
-import {decodeAddress} from 'ripple-address-codec'
+import {decodeAddress} from 'stoxum-address-codec'
 import {validate} from '../common'
-import {computeBinaryTransactionHash} from 'ripple-hashes'
+import {computeBinaryTransactionHash} from 'stoxum-hashes'
 
 function addressToBigNumber(address) {
   const hex = (new Buffer(decodeAddress(address))).toString('hex')

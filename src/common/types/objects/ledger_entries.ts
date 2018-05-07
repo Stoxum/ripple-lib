@@ -74,7 +74,7 @@ export interface SignerListLedgerEntry {
 }
 
 // TODO: Add the other ledger entry types, then remove the `any` fallback
-// see https://ripple.com/build/ledger-format/#ledger-object-types
+// see https://stoxum.com/build/ledger-format/#ledger-object-types
 export type LedgerEntry =
   AccountRootLedgerEntry |
   AmendmentsLedgerEntry |

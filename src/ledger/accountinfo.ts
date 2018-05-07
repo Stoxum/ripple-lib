@@ -1,5 +1,5 @@
 import {validate, removeUndefined, dropsToXrp} from '../common'
-import {RippleAPI} from '../api'
+import {StoxumAPI} from '../api'
 import {AccountInfoResponse} from '../common/types/commands/account_info'
 
 export type GetAccountInfoOptions = {
@@ -30,7 +30,7 @@ function formatAccountInfo(
 }
 
 export default async function getAccountInfo(
-  this: RippleAPI, address: string, options: GetAccountInfoOptions = {}
+  this: StoxumAPI, address: string, options: GetAccountInfoOptions = {}
 ): Promise<FormattedGetAccountInfoResponse> {
   // 1. Validate
   validate.getAccountInfo({address, options})

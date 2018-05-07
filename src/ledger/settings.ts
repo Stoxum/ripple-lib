@@ -3,7 +3,7 @@ import parseFields from './parse/fields'
 import {validate, constants} from '../common'
 import {FormattedSettings} from '../common/types/objects'
 import {AccountInfoResponse} from '../common/types/commands'
-import {RippleAPI} from '../api'
+import {StoxumAPI} from '../api'
 const AccountFlags = constants.AccountFlags
 
 export type SettingsOptions = {
@@ -28,7 +28,7 @@ function formatSettings(response: AccountInfoResponse) {
 }
 
 async function getSettings(
-  this: RippleAPI, address: string, options: SettingsOptions = {}
+  this: StoxumAPI, address: string, options: SettingsOptions = {}
 ): Promise<FormattedSettings> {
   // 1. Validate
   validate.getSettings({address, options})

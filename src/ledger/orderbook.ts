@@ -7,7 +7,7 @@ import {
 import {validate} from '../common'
 import {Amount, Issue} from '../common/types/objects'
 import {BookOffer} from '../common/types/commands'
-import {RippleAPI} from '../api'
+import {StoxumAPI} from '../api'
 
 export type FormattedOrderbook = {
   bids: FormattedOrderbookOrder[],
@@ -60,7 +60,7 @@ function formatBidsAndAsks(
 // account is to specify a "perspective", which affects which unfunded offers
 // are returned
 async function makeRequest(
-  api: RippleAPI, taker: string, options: GetOrderbookOptions,
+  api: StoxumAPI, taker: string, options: GetOrderbookOptions,
   takerGets: Issue, takerPays: Issue
 ) {
   const orderData = utils.renameCounterpartyToIssuerInOrder({
@@ -88,7 +88,7 @@ export type OrderbookInfo = {
 }
 
 export default async function getOrderbook(
-  this: RippleAPI,
+  this: StoxumAPI,
   address: string,
   orderbook: OrderbookInfo,
   options: GetOrderbookOptions = {}

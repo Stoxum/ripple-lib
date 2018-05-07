@@ -1,5 +1,5 @@
 import * as _ from 'lodash'
-import transactionParser = require('ripple-lib-transactionparser')
+import transactionParser = require('stoxum-lib-transactionparser')
 import BigNumber from 'bignumber.js'
 import * as common from '../../common'
 import parseAmount from './amount'
@@ -25,11 +25,11 @@ function parseQuality(quality?: number|null): number|undefined {
   return (new BigNumber(quality)).shift(-9).toNumber()
 }
 
-function parseTimestamp(rippleTime?: number|null): string|undefined {
-  if (typeof rippleTime !== 'number') {
+function parseTimestamp(stoxumTime?: number|null): string|undefined {
+  if (typeof stoxumTime !== 'number') {
     return undefined
   }
-  return common.rippleTimeToISO8601(rippleTime)
+  return common.stoxumTimeToISO8601(stoxumTime)
 }
 
 function removeEmptyCounterparty(amount) {

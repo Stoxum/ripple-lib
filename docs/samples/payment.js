@@ -1,10 +1,10 @@
 'use strict';
-const RippleAPI = require('../../src').RippleAPI; // require('ripple-lib')
+const StoxumAPI = require('../../src').StoxumAPI; // require('stoxum-lib')
 
 const address = 'INSERT ADDRESS HERE';
 const secret = 'INSERT SECRET HERE';
 
-const api = new RippleAPI({server: 'wss://s1.ripple.com:443'});
+const api = new StoxumAPI({server: 'wss://s1.stoxum.com:51231'});
 const instructions = {maxLedgerVersionOffset: 5};
 
 const payment = {

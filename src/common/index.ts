@@ -12,11 +12,11 @@ export {
 export {
   dropsToXrp,
   xrpToDrops,
-  toRippledAmount,
+  toStoxumdAmount,
   removeUndefined,
   convertKeysFromSnakeCaseToCamelCase,
-  iso8601ToRippleTime,
-  rippleTimeToISO8601
+  iso8601ToStoxumTime,
+  stoxumTimeToISO8601
 } from './utils'
 export {default as Connection} from './connection'
 export {txFlags} from './txflags'

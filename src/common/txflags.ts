@@ -17,9 +17,9 @@ const txFlags = {
 
   TrustSet: {
     SetAuth: 0x00010000,
-    NoRipple: 0x00020000,
-    SetNoRipple: 0x00020000,
-    ClearNoRipple: 0x00040000,
+    NoStoxum: 0x00020000,
+    SetNoStoxum: 0x00020000,
+    ClearNoStoxum: 0x00040000,
     SetFreeze: 0x00100000,
     ClearFreeze: 0x00200000
   },
@@ -32,7 +32,7 @@ const txFlags = {
   },
 
   Payment: {
-    NoRippleDirect: 0x00010000,
+    NoStoxumDirect: 0x00010000,
     PartialPayment: 0x00020000,
     LimitQuality: 0x00040000
   },
@@ -55,7 +55,7 @@ const txFlagIndices = {
     asfAccountTxnID: 5,
     asfNoFreeze: 6,
     asfGlobalFreeze: 7,
-    asfDefaultRipple: 8,
+    asfDefaultStoxum: 8,
     asfDepositAuth: 9
   }
 }

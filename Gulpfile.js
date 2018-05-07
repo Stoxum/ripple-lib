@@ -16,7 +16,7 @@ var pkg = require('./package.json');
 
 var uglifyOptions = {
   mangle: {
-    reserved: ['_', 'RippleError', 'RippledError', 'UnexpectedError',
+    reserved: ['_', 'StoxumError', 'StoxumdError', 'UnexpectedError',
     'LedgerVersionError', 'ConnectionError', 'NotConnectedError',
     'DisconnectedError', 'TimeoutError', 'ResponseFormatError',
     'ValidationError', 'NotFoundError', 'MissingLedgerHistoryError',
@@ -34,9 +34,9 @@ function getWebpackConfig(extension, overrides) {
     }],
     entry: './src/index.ts',
     output: {
-      library: 'ripple',
+      library: 'stoxum',
       path: path.join(__dirname, 'build/'),
-      filename: ['ripple-', extension].join(pkg.version)
+      filename: ['stoxum-', extension].join(pkg.version)
     },
     plugins: [
       new webpack.NormalModuleReplacementPlugin(/^ws$/, './wswrapper'),
@@ -76,7 +76,7 @@ function webpackConfigForWebTest(testFileName, path) {
   var configOverrides = {
     externals: [{
       'lodash': '_',
-      'ripple-api': 'ripple',
+      'stoxum-api': 'stoxum',
       'net': 'null'
     }],
     entry: testFileName,
@@ -113,8 +113,8 @@ function createLink(from, to) {
 
 function createBuildLink(callback) {
   return function(err, res) {
-    createLink('./build/ripple-' + pkg.version + '.js',
-      './build/ripple-latest.js');
+    createLink('./build/stoxum-' + pkg.version + '.js',
+      './build/stoxum-latest.js');
     callback(err, res);
   };
 }
@@ -127,8 +127,8 @@ gulp.task('build-min', function(callback) {
   const webpackConfig = getWebpackConfig('-min.js');
   webpackConfig.plugins.push(new UglifyJsPlugin({uglifyOptions}));
   webpack(webpackConfig, function() {
-    createLink('./build/ripple-' + pkg.version + '-min.js',
-      './build/ripple-latest-min.js');
+    createLink('./build/stoxum-' + pkg.version + '-min.js',
+      './build/stoxum-latest-min.js');
     callback();
   });
 });
@@ -167,20 +167,20 @@ gulp.task('build-core', function(callback) {
 });
 
 gulp.task('bower-build', ['build'], function() {
-  return gulp.src(['./build/ripple-', '.js'].join(pkg.version))
-  .pipe(rename('ripple.js'))
+  return gulp.src(['./build/stoxum-', '.js'].join(pkg.version))
+  .pipe(rename('stoxum.js'))
   .pipe(gulp.dest('./dist/bower'));
 });
 
 gulp.task('bower-build-min', ['build-min'], function() {
-  return gulp.src(['./build/ripple-', '-min.js'].join(pkg.version))
-  .pipe(rename('ripple-min.js'))
+  return gulp.src(['./build/stoxum-', '-min.js'].join(pkg.version))
+  .pipe(rename('stoxum-min.js'))
   .pipe(gulp.dest('./dist/bower'));
 });
 
 gulp.task('bower-build-debug', ['build-debug'], function() {
-  return gulp.src(['./build/ripple-', '-debug.js'].join(pkg.version))
-  .pipe(rename('ripple-debug.js'))
+  return gulp.src(['./build/stoxum-', '-debug.js'].join(pkg.version))
+  .pipe(rename('stoxum-debug.js'))
   .pipe(gulp.dest('./dist/bower'));
 });
 

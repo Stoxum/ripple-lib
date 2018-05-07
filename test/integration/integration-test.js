@@ -6,8 +6,8 @@ const assert = require('assert');
 const errors = require('../../src/common/errors');
 const wallet = require('./wallet');
 const requests = require('../fixtures/requests');
-const RippleAPI = require('ripple-api').RippleAPI;
-const {isValidAddress} = require('ripple-address-codec');
+const StoxumAPI = require('stoxum-api').StoxumAPI;
+const {isValidAddress} = require('stoxum-address-codec');
 const {isValidSecret} = require('../../src/common');
 const {payTo, ledgerAccept} = require('./utils');
 
@@ -71,8 +71,8 @@ function testTransaction(testcase, type, lastClosedLedgerVersion, prepared,
   });
 }
 
-function setup(server = 'wss://s1.ripple.com') {
-  this.api = new RippleAPI({server});
+function setup(server = 'wss://s1.stoxum.com:51231') {
+  this.api = new StoxumAPI({server});
   console.log('CONNECTING...');
   return this.api.connect().then(() => {
     console.log('CONNECTED...');
@@ -121,7 +121,7 @@ function setupAccounts(testcase) {
     .then(() => payTo(api, 'rKmBGxocj9Abgy25J51Mk1iqFzW9aVF9Tc'))
     .then(() => payTo(api, 'rMwjYedjc7qqtKYVLiAccJSmCwih4LnE2q'))
     .then(() => {
-      return api.prepareSettings(masterAccount, {defaultRipple: true})
+      return api.prepareSettings(masterAccount, {defaultStoxum: true})
       .then(data => api.sign(data.txJSON, masterSecret))
       .then(signed => api.submit(signed.signedTransaction))
       .then(() => ledgerAccept(api));
@@ -441,7 +441,7 @@ describe('integration tests', function() {
 
 });
 
-describe('integration tests - standalone rippled', function() {
+describe('integration tests - standalone stoxumd', function() {
   const instructions = {maxLedgerVersionOffset: 10};
   this.timeout(TIMEOUT);
 

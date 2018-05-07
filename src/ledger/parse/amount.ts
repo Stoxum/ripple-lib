@@ -1,8 +1,8 @@
 import * as common from '../../common'
-import {Amount, RippledAmount} from '../../common/types/objects'
+import {Amount, StoxumdAmount} from '../../common/types/objects'
 
 
-function parseAmount(amount: RippledAmount): Amount {
+function parseAmount(amount: StoxumdAmount): Amount {
   if (typeof amount === 'string') {
     return {
       currency: 'XRP',

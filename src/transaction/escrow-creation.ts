@@ -1,6 +1,6 @@
 import * as _ from 'lodash'
 import * as utils from './utils'
-import {validate, iso8601ToRippleTime, xrpToDrops} from '../common'
+import {validate, iso8601ToStoxumTime, xrpToDrops} from '../common'
 const ValidationError = utils.common.errors.ValidationError
 import {Instructions, Prepare} from './types'
 import {Memo} from '../common/types/objects'
@@ -30,10 +30,10 @@ function createEscrowCreationTransaction(account: string,
     txJSON.Condition = payment.condition
   }
   if (payment.allowCancelAfter !== undefined) {
-    txJSON.CancelAfter = iso8601ToRippleTime(payment.allowCancelAfter)
+    txJSON.CancelAfter = iso8601ToStoxumTime(payment.allowCancelAfter)
   }
   if (payment.allowExecuteAfter !== undefined) {
-    txJSON.FinishAfter = iso8601ToRippleTime(payment.allowExecuteAfter)
+    txJSON.FinishAfter = iso8601ToStoxumTime(payment.allowExecuteAfter)
   }
   if (payment.sourceTag !== undefined) {
     txJSON.SourceTag = payment.sourceTag

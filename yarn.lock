@@ -4125,16 +4125,16 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^2.0.0"
     inherits "^2.0.1"
 
-ripple-address-codec@^2.0.1:
+stoxum-address-codec@^2.0.1:
   version "2.0.1"
-  resolved "https://registry.yarnpkg.com/ripple-address-codec/-/ripple-address-codec-2.0.1.tgz#eddbe3a7960d2e02c5c1c74fb9a9fa0d2dfb6571"
+  resolved "https://registry.yarnpkg.com/stoxum-address-codec/-/stoxum-address-codec-2.0.1.tgz#eddbe3a7960d2e02c5c1c74fb9a9fa0d2dfb6571"
   dependencies:
     hash.js "^1.0.3"
     x-address-codec "^0.7.0"
 
-ripple-binary-codec@^0.1.0, ripple-binary-codec@^0.1.13:
+stoxum-binary-codec@^0.1.0, stoxum-binary-codec@^0.1.13:
   version "0.1.13"
-  resolved "https://registry.yarnpkg.com/ripple-binary-codec/-/ripple-binary-codec-0.1.13.tgz#c68951405a17a71695551e789966ff376da552e4"
+  resolved "https://registry.yarnpkg.com/stoxum-binary-codec/-/stoxum-binary-codec-0.1.13.tgz#c68951405a17a71695551e789966ff376da552e4"
   dependencies:
     babel-runtime "^6.6.1"
     bn.js "^4.11.3"
@@ -4142,31 +4142,31 @@ ripple-binary-codec@^0.1.0, ripple-binary-codec@^0.1.13:
     decimal.js "^5.0.8"
     inherits "^2.0.1"
     lodash "^4.12.0"
-    ripple-address-codec "^2.0.1"
+    stoxum-address-codec "^2.0.1"
 
-ripple-hashes@^0.3.1:
+stoxum-hashes@^0.3.1:
   version "0.3.1"
-  resolved "https://registry.yarnpkg.com/ripple-hashes/-/ripple-hashes-0.3.1.tgz#f2f46f1ff05e6487500a99839019114cd2482411"
+  resolved "https://registry.yarnpkg.com/stoxum-hashes/-/stoxum-hashes-0.3.1.tgz#f2f46f1ff05e6487500a99839019114cd2482411"
   dependencies:
     bignumber.js "^4.1.0"
     create-hash "^1.1.2"
-    ripple-address-codec "^2.0.1"
-    ripple-binary-codec "^0.1.0"
+    stoxum-address-codec "^2.0.1"
+    stoxum-binary-codec "^0.1.0"
 
-ripple-keypairs@^0.10.1:
+stoxum-keypairs@^0.10.1:
   version "0.10.1"
-  resolved "https://registry.yarnpkg.com/ripple-keypairs/-/ripple-keypairs-0.10.1.tgz#ef796b519bb202682515e7cdd6063762636943e6"
+  resolved "https://registry.yarnpkg.com/stoxum-keypairs/-/stoxum-keypairs-0.10.1.tgz#ef796b519bb202682515e7cdd6063762636943e6"
   dependencies:
     babel-runtime "^5.8.20"
     bn.js "^3.1.1"
     brorand "^1.0.5"
     elliptic "^5.1.0"
     hash.js "^1.0.3"
-    ripple-address-codec "^2.0.1"
+    stoxum-address-codec "^2.0.1"
 
-ripple-lib-transactionparser@^0.6.2:
+stoxum-lib-transactionparser@^0.6.2:
   version "0.6.2"
-  resolved "https://registry.yarnpkg.com/ripple-lib-transactionparser/-/ripple-lib-transactionparser-0.6.2.tgz#eb117834816cab3398445a74ec3cacec95b6b5fa"
+  resolved "https://registry.yarnpkg.com/stoxum-lib-transactionparser/-/stoxum-lib-transactionparser-0.6.2.tgz#eb117834816cab3398445a74ec3cacec95b6b5fa"
   dependencies:
     bignumber.js "^4.1.0"
     lodash "^4.17.4"

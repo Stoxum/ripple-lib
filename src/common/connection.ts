@@ -3,9 +3,9 @@ import {EventEmitter} from 'events'
 import {parse as parseUrl} from 'url'
 import * as WebSocket from 'ws'
 import RangeSet from './rangeset'
-import {RippledError, DisconnectedError, NotConnectedError,
+import {StoxumdError, DisconnectedError, NotConnectedError,
   TimeoutError, ResponseFormatError, ConnectionError,
-  RippledNotInitializedError} from './errors'
+  StoxumdNotInitializedError} from './errors'
 
 function isStreamMessageType(type) {
   return type === 'ledgerClosed' ||
@@ -199,9 +199,9 @@ class Connection extends EventEmitter {
     }
     return this.request(request).then((data: any) => {
       if (_.isEmpty(data) || !data.ledger_index) {
-        // rippled instance doesn't have validated ledgers
+        // stoxumd instance doesn't have validated ledgers
         return this._disconnect(false).then(() => {
-          throw new RippledNotInitializedError('Rippled not initialized')
+          throw new StoxumdNotInitializedError('Stoxumd not initialized')
         })
       }
 
@@ -450,7 +450,7 @@ class Connection extends EventEmitter {
 
       this.once(eventName, response => {
         if (response.status === 'error') {
-          _reject(new RippledError(response.error))
+          _reject(new StoxumdError(response.error))
         } else if (response.status === 'success') {
           _resolve(response.result)
         } else {

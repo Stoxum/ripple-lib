@@ -73,10 +73,10 @@ function signum(num) {
 }
 
 /**
- *  Order two rippled transactions based on their ledger_index.
+ *  Order two stoxumd transactions based on their ledger_index.
  *  If two transactions took place in the same ledger, sort
  *  them based on TransactionIndex
- *  See: https://ripple.com/build/transactions/
+ *  See: https://stoxum.com/build/transactions/
  */
 function compareTransactions(
   first: FormattedTransactionType, second: FormattedTransactionType

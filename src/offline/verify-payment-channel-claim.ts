@@ -1,5 +1,5 @@
-import keypairs = require('ripple-keypairs')
-import binary = require('ripple-binary-codec')
+import keypairs = require('stoxum-keypairs')
+import binary = require('stoxum-binary-codec')
 import {validate, xrpToDrops} from '../common'
 
 function verifyPaymentChannelClaim(channel: string, amount: string,

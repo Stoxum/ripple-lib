@@ -16,7 +16,7 @@ export type FormattedCheckCreate = {
   // (Optional) identifies the reason for the check, or a hosted recipient.
   destinationTag?: string,
 
-  // (Optional) time in seconds since the Ripple Epoch.
+  // (Optional) time in seconds since the Stoxum Epoch.
   expiration?: string,
 
   // (Optional) 256-bit hash representing a specific reason or identifier.

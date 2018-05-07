@@ -2,7 +2,7 @@
 
 const createHTTPServer = require('../dist/npm/http').createHTTPServer;
 const port = 5990;
-const serverUrl = 'wss://s1.ripple.com';
+const serverUrl = 'wss://s1.stoxum.com:51231';
 
 
 function main() {

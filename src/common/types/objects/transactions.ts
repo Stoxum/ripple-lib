@@ -1,4 +1,4 @@
-import {RippledAmount} from './amounts'
+import {StoxumdAmount} from './amounts'
 import {Memo} from './memos'
 
 export interface OfferCreateTransaction {
@@ -13,8 +13,8 @@ export interface OfferCreateTransaction {
   Signers: any[],
   SigningPubKey: string,
   SourceTag?: number,
-  TakerGets: RippledAmount,
-  TakerPays: RippledAmount,
+  TakerGets: StoxumdAmount,
+  TakerPays: StoxumdAmount,
   TxnSignature: string,
   Expiration?: number,
   Memos?: Memo[],

@@ -1,6 +1,6 @@
 import * as _ from 'lodash'
-import binary = require('ripple-binary-codec')
-const {computeTransactionHash} = require('ripple-hashes')
+import binary = require('stoxum-binary-codec')
+const {computeTransactionHash} = require('stoxum-hashes')
 import * as utils from './utils'
 import parseTransaction from './parse/transaction'
 import getTransaction from './transaction'
@@ -37,7 +37,7 @@ function parseBinaryTransaction(transaction) {
 
 function parseAccountTxTransaction(tx) {
   const _tx = tx.tx_blob ? parseBinaryTransaction(tx) : tx
-  // rippled uses a different response format for 'account_tx' than 'tx'
+  // stoxumd uses a different response format for 'account_tx' than 'tx'
   return parseTransaction(_.assign({}, _tx.tx,
     {meta: _tx.meta, validated: _tx.validated}))
 }

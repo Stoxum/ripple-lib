@@ -102,7 +102,7 @@ export class RestrictedConnection extends Connection {
   }
 }
 
-class RippleAPI extends EventEmitter {
+class StoxumAPI extends EventEmitter {
 
   _feeCushion: number
   connection: RestrictedConnection
@@ -288,5 +288,5 @@ class RippleAPI extends EventEmitter {
 }
 
 export {
-  RippleAPI
+  StoxumAPI
 }

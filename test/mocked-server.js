@@ -3,7 +3,7 @@
 
 const port = 34371;
 
-const createMockRippled = require('./mock-rippled');
+const createMockStoxumd = require('./mock-stoxumd');
 
 function main() {
   if (global.describe) {
@@ -11,9 +11,9 @@ function main() {
     return;
   }
   console.log('starting server on port ' + port);
-  createMockRippled(port);
+  createMockStoxumd(port);
   console.log('starting server on port ' + String(port + 1));
-  createMockRippled(port + 1);
+  createMockStoxumd(port + 1);
 }
 
 main();
