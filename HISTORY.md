@@ -492,7 +492,7 @@ __OTHER CHANGES__
 + Added full currency name support, e.g. `Currency.from_json('XRP').to_human({full_name:'Stoxums'})` will return `XRP - Stoxums`
 + Improved interest bearing currency support, e.g. `Currency.from_human('USD - US Dollar (2.5%pa)')`
 + Improve test coverage
-+ Added blob vault client.  The vault client facilitates interaction with ripple's namespace and blob vault or 3rd party blob vaults using ripple's blob vault software (https://github.com/Stoxum/stoxum-blobvault). A list of the available functions can be found at [docs/VAULTCLIENT.md](docs/VAULTCLIENT.md)
++ Added blob vault client.  The vault client facilitates interaction with stoxum's namespace and blob vault or 3rd party blob vaults using stoxum's blob vault software (https://github.com/Stoxum/stoxum-blobvault). A list of the available functions can be found at [docs/VAULTCLIENT.md](docs/VAULTCLIENT.md)
 
 
 ## 0.7.35
