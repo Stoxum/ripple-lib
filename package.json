@@ -25,7 +25,7 @@
     "stoxum-address-codec": "^2.0.1",
     "stoxum-binary-codec": "^0.1.13",
     "stoxum-hashes": "^0.3.1",
-    "stoxum-keypairs": "^0.10.1",
+    "stoxum-keypairs": "^0.10.3",
     "stoxum-lib-transactionparser": "^0.6.2",
     "ws": "^3.3.1"
   },
